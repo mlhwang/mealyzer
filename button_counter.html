@@ -1,0 +1,68 @@
+<html>
+<head>
+    <!-- <title>Space Clicker</title> -->
+    <style>
+        img{
+            display: block;
+            /*border: 3px solid black;
+            margin: 10px;
+            padding: 7px 50px 7px 25px;*/
+            width: 50px;
+            height:30px;
+            margin: 5px;
+            
+            /*position: absolute;*/
+        }
+        .left-div{
+            float:left;
+            padding: 7px;
+            /*text-align: left;*/
+        }
+
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+    var clicks = 0;
+    function onClick() {
+        clicks += 0.5;
+        document.getElementById("clicks").innerHTML = clicks;
+    };
+    function onClick2() {
+        clicks -= 0.5;
+        document.getElementById("clicks").innerHTML = clicks;
+    };
+    </script>
+
+<div class="left-div">           
+        <p>Portion: <a id="clicks">0</a></p>
+            
+</div>
+
+<div class="right-div"> 
+        <img src="https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/2000/arrows.jpg" type="button" onClick="onClick()" />
+
+        <img src="https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/2000/arrows_D.jpg" type="button" onClick="onClick2()" />
+            
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
