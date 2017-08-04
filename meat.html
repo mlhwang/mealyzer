@@ -1,0 +1,65 @@
+<table style="border: 2px solid" width="100%">
+	<tbody>
+		<tr>
+			<th>Your assigned meal was...</th>
+			<th><img src="https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/256/original/pic.jpg" text-align="center" width="97%" /></th>
+			<th>Ingredients: 1 whole quesadilla, 4 tbl guacamole, 2 tbl mango chutney (tomatoes, mangos, onions, cilantro), seared slices of tuna, and cabbage salad.</th>
+		</tr>
+		<tr>
+			<th align="center" style="border: 2px solid" width="33%">Less than</th>
+			<th align="center" style="border: 2px solid" width="33%">Equal to</th>
+			<th align="center" style="border: 2px solid" width="33%">Greater than</th>
+		</tr>
+		<tr>
+			<td align="center" id="LT" style="border: 2px solid" valign="top">meal here</td>
+			<td align="center" id="EQ" style="border: 2px solid" valign="top">meal here</td>
+			<td align="center" id="GT" style="border: 2px solid" valign="top">meal here</td>
+		</tr>
+	</tbody>
+</table>
+
+<div style="display:none">
+<div id="Q116">${q://QID116/SelectedChoicesRecode}</div>
+
+<div id="Q115">${q://QID115/SelectedChoicesRecode}</div>
+
+<div id="Q108">${q://QID108/SelectedChoicesRecode}</div>
+
+<div id="Q109">${q://QID109/SelectedChoicesRecode}</div>
+
+<div id="Q113">${q://QID113/SelectedChoicesRecode}</div>
+</div>
+
+<script>
+var lt = []
+var eq = []
+var gt = []
+
+var img_links = 
+{Q116: "https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/605/original/pic.jpg 50",
+Q115: "https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/183/original/pic.jpg 33",
+Q108: "https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/285/original/pic.jpg 17",
+Q109: "https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/668/original/pic.jpg 22",
+Q113: "https://www.dropbox.com/s/fvk8uufvp7jhn0y/101914_lunch.jpg?raw=1 35"};
+
+function add_q_to_lists(q_num){
+  var q_response = document.getElementById(q_num).innerHTML;
+  var placement = [];//as a default
+  var carbs = img_links[q_num].split(" ")[1];
+  var pic_link = img_links[q_num].split(" ")[0];
+  var imgHtml = "<p>"+carbs+" grams of carbs:</p><img src=\"" +pic_link + "\" width=\"100%\"/>"
+  if (q_response == "1") { placement = gt; }
+  if (q_response == "2") { placement = lt; }
+  if (q_response == "3") { placement = eq; }
+  placement.push(imgHtml); 
+}
+
+Object.keys(img_links).forEach(function(key,index) {
+  add_q_to_lists(key);
+});
+
+
+document.getElementById("LT").innerHTML = lt;
+document.getElementById("EQ").innerHTML = eq;
+document.getElementById("GT").innerHTML = gt;
+</script>

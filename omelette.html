@@ -1,0 +1,61 @@
+<table style="border: 2px solid" width="100%">
+  <tbody><tr>
+    <th>Your assigned meal was...</th>
+    <th><img width="97%" text-align="center" src="https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/744/original/pic.jpg"></th>
+    <th>Ingredients: 3 eggs, 6 ounces of mushrooms, and 2 ounces of cheese.</th>
+   </tr>
+   <tr>
+    <th style="border: 2px solid" width="33%">Less than</th>
+    <th style="border: 2px solid" width="33%">Equal to</th>
+    <th style="border: 2px solid" width="33%">Greater than</th>
+  </tr>
+  <tr>
+    <td align="center" id="LT" style="border: 2px solid" valign="top">meal here</td>
+    <td align="center" id="EQ" style="border: 2px solid" valign="top">meal here</td>
+    <td align="center" id="GT" style="border: 2px solid" valign="top">meal here</td>
+  </tr>
+</tbody></table>
+
+<div style="display:none">
+   <div id="Q22">${q://QID22/SelectedChoicesRecode}</div>
+   <div id="Q153">${q://QID153/SelectedChoicesRecode}</div>
+   <div id="Q26">${q://QID26/SelectedChoicesRecode}</div>
+   <div id="Q123">${q://QID123/SelectedChoicesRecode}</div>
+   <div id="Q17">${q://QID17/SelectedChoicesRecode}</div>
+  
+   
+</div>
+
+<script>
+var lt = []
+var eq = []
+var gt = []
+
+var img_links = 
+{Q22: "https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/131/original/pic.jpg 14",
+Q153: "https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/727/original/pic.jpg 50",
+Q26: "https://www.dropbox.com/s/qn317sp09h8izo5/111614_breakfast.jpg?raw=1 26",
+Q123: "https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/782/original/pic.jpg 29",
+Q17: "https://raw.githubusercontent.com/mlhwang/mealyzer/master/meals/76/original/pic.jpg 1.6"};
+
+function add_q_to_lists(q_num){
+  var q_response = document.getElementById(q_num).innerHTML;
+  var placement = [];//as a default
+  var carbs = img_links[q_num].split(" ")[1];
+  var pic_link = img_links[q_num].split(" ")[0];
+  var imgHtml = "<p>"+carbs+" grams of carbs:</p><img src=\"" +pic_link + "\" width=\"100%\"/>"
+  if (q_response == "1") { placement = gt; }
+  if (q_response == "2") { placement = lt; }
+  if (q_response == "3") { placement = eq; }
+  placement.push(imgHtml); 
+}
+
+Object.keys(img_links).forEach(function(key,index) {
+  add_q_to_lists(key);
+});
+
+
+document.getElementById("LT").innerHTML = lt;
+document.getElementById("EQ").innerHTML = eq;
+document.getElementById("GT").innerHTML = gt;
+</script>
